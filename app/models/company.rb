@@ -9,7 +9,8 @@ class Company < ApplicationRecord
   def self.all
     results = DB.exec(
     <<-SQL    
-    SELECT * FROM company;
+    SELECT * FROM company
+    ORDER BY name ASC;
     SQL
     )
     return results.map do |result|
@@ -90,7 +91,7 @@ def self.update(id, opts)
   results = DB.exec(
       <<-SQL
           UPDATE company
-          SET name='#{opts["name"]}', founded=#{opts["founded"]}, country='#{opts["country"]}', parent_id=#{opts["parent_id"]}
+          SET name='#{opts["name"]}', description='#{opts["description"]}', country='#{opts["country"]}', image='#{opts["image"]}', parent_id=#{opts["parent_id"]}
           WHERE id=#{id}
           RETURNING id, name, description, image, country, parent_id;
       SQL
