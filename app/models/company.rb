@@ -10,7 +10,7 @@ class Company < ApplicationRecord
     results = DB.exec(
     <<-SQL    
     SELECT * FROM company
-    ORDER BY name ASC;
+    ORDER BY id ASC;
     SQL
     )
     return results.map do |result|
