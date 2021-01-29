@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
 
-  get '/posts', to: 'posts#index'
+  get '/companies', to: 'companies#index'
 
-  get '/posts/:id', to: 'posts#show'
+  get '/companies/:id', to: 'companies#show'
 
-  post '/posts', to: 'posts#create'
+  post '/companies', to: 'companies#create'
 
-  put '/posts/:id', to: 'posts#update'
+  put '/companies/:id', to: 'companies#update'
 
-  delete '/posts/:id', to: 'posts#delete'
-
-  post '/postsseed', to: 'posts#create_many'
+  delete '/companies/:id', to: 'companies#delete'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
