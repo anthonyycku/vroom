@@ -18,6 +18,7 @@ class Car
             "id" => result["id"].to_i,
             "model" => result["model"],
             "price" => result["price"].to_i,
+            "type" => result["type"],
             "rating"=> result["rating"].to_i,
             "image" => result["image"],
             "company_id" => result["company_id"].to_i
@@ -40,6 +41,7 @@ class Car
               "model" => result["model"],
               "price" => result["price"].to_i,
               "rating"=> result["rating"].to_i,
+              "type" => result["type"],
               "image" => result["image"],
               "company_id" => result["company_id"].to_i
         }
@@ -49,9 +51,9 @@ class Car
     def self.create(opts)
       results = DB.exec(
           <<-SQL
-              INSERT INTO car (name, model, price, rating, image, company_id)
-              VALUES ( '#{opts["name"]}', '#{opts["model"]}', #{opts["price"]}, #{opts["rating"]}, '#{opts["image"]}', #{opts["company_id"]}, )
-              RETURNING id, name, model, rating, image, price, company_id;
+              INSERT INTO car (name, model, price, rating, type, image, company_id)
+              VALUES ( '#{opts["name"]}', '#{opts["model"]}', #{opts["price"]}, #{opts["rating"]}, '#{opts["type"]}','#{opts["image"]}', #{opts["company_id"]}, )
+              RETURNING id, name, model, rating, type, image, price, company_id;
           SQL
       )
       result = results.first
@@ -60,6 +62,7 @@ class Car
         "model" => result["model"],
         "price" => result["price"].to_i,
         "rating"=> result["rating"].to_i,
+        "type" => result["type"],
         "image" => result["image"],
         "company_id" => result["company_id"].to_i
       }
@@ -75,9 +78,9 @@ class Car
           <<-SQL
               UPDATE car
               SET name='#{opts["name"]}', model='#{opts["model"]}', rating=#{opts["rating"]}, image='#{opts["image"]}',
-              price=#{opts["price"]}, company_id='#{opts["company_id"]}'
+              price=#{opts["price"]}, company_id='#{opts["company_id"]}', type='#{opts["type"]}'
               WHERE id=#{id}
-              RETURNING id, name, model, price, rating, image, company_id
+              RETURNING id, name, model, price, type, rating, image, company_id
           SQL
       )
       result = results.first
@@ -85,6 +88,7 @@ class Car
         "id" => result["id"].to_i,
         "model" => result["model"],
         "price" => result["price"].to_i,
+        "type" => result["type"],
         "rating"=> result["rating"].to_i,
         "image" => result["image"],
         "company_id" => result["company_id"].to_i
