@@ -28,22 +28,22 @@ class Car
     def self.find(id)
       results = DB.exec(
           <<-SQL
-          SELECT car.* FROM company 
-          LEFT JOIN car 
-          ON car.company_id=company.id
-          SELECT * FROM car
-          WHERE id=#{id}
+          SELECT car.* FROM car
+          LEFT JOIN company
+          ON car.company_id = company.id
+          WHERE company.id = #{id}
           SQL
       )
-      result = results.first
-      return {
-            "id" => result["id"].to_i,
-            "model" => result["model"],
-            "price" => result["price"].to_i,
-            "rating"=> result["rating"].to_i,
-            "image" => result["image"],
-            "company_id" => result["company_id"].to_i
-      }
+      return results.map do |result|
+          {
+              "id" => result["id"].to_i,
+              "model" => result["model"],
+              "price" => result["price"].to_i,
+              "rating"=> result["rating"].to_i,
+              "image" => result["image"],
+              "company_id" => result["company_id"].to_i
+        }
+        end
     end
   
     def self.create(opts)
