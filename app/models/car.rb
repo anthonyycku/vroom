@@ -53,7 +53,7 @@ class Car
           <<-SQL
               INSERT INTO car (model, price, rating, type, image, company_id)
               VALUES ('#{opts["model"]}', #{opts["price"]}, #{opts["rating"]}, '#{opts["type"]}','#{opts["image"]}', #{opts["company_id"]}, )
-              RETURNING id, name, model, rating, type, image, price, company_id;
+              RETURNING id, model, rating, type, image, price, company_id;
           SQL
       )
       result = results.first
