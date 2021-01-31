@@ -96,6 +96,7 @@ def self.update(id, opts)
           RETURNING id, name, description, image, country, parent_id;
       SQL
   )
+  results.first["parent_id"] = 0 if results.first["parent_id"] == nil
   return {
       "id" => results.first["id"].to_i,
       "name" => results.first["name"],
