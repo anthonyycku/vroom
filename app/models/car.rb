@@ -77,10 +77,10 @@ class Car
       results = DB.exec(
           <<-SQL
               UPDATE car
-              SET name='#{opts["name"]}', model='#{opts["model"]}', rating=#{opts["rating"]}, image='#{opts["image"]}',
-              price=#{opts["price"]}, company_id='#{opts["company_id"]}', type='#{opts["type"]}'
+              SET model='#{opts["model"]}', rating=#{opts["rating"]}, image='#{opts["image"]}',
+              price=#{opts["price"]}, company_id=#{opts["company_id"]}, type='#{opts["type"]}'
               WHERE id=#{id}
-              RETURNING id, name, model, price, type, rating, image, company_id
+              RETURNING id, model, price, type, rating, image, company_id
           SQL
       )
       result = results.first
