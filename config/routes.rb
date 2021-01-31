@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete '/companies/:id', to: 'companies#delete'
 
   get '/cars', to:'cars#index'
+  get '/singleCar/:id', to:'cars#showSingle'
   get '/cars/:id', to:'cars#show'
   post '/cars', to:'cars#create'
   delete '/cars/:id', to:'cars#delete'

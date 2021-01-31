@@ -4,6 +4,10 @@ class CarsController < ApplicationController
         render json: Car.all
     end
 
+    def showSingle
+        render json: Car.findSingle(params["id"])
+    end
+
     def show
         render json: Car.find(params["id"])
     end

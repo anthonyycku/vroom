@@ -47,6 +47,25 @@ class Car
         }
         end
     end
+
+    def self.findSingle(id)
+      results = DB.exec(
+        <<-SQL
+        SELECT * FROM car
+        WHERE id=#{id}
+        SQL
+      )
+      result = results.first
+      return {
+        "id" => result["id"].to_i,
+        "model" => result["model"],
+        "price" => result["price"].to_i,
+        "rating"=> result["rating"].to_i,
+        "type" => result["type"],
+        "image" => result["image"],
+        "company_id" => result["company_id"].to_i
+      }
+    end
   
     def self.create(opts)
       results = DB.exec(
