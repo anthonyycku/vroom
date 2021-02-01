@@ -1,0 +1,27 @@
+Started GET "/" for ::1 at 2021-02-01 12:08:48 -0500
+  [1m[35m (7.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/anthonyku/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.1.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/anthonyku/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.1.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.3ms | Allocations: 402)
+Completed 200 OK in 26ms (Views: 15.0ms | ActiveRecord: 0.0ms | Allocations: 3429)
+
+
+Started GET "/companies" for ::1 at 2021-02-01 12:08:52 -0500
+Processing by CompaniesController#index as HTML
+Completed 200 OK in 45ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 1613)
+
+
+Started GET "/cars" for ::1 at 2021-02-01 12:08:59 -0500
+Processing by CarsController#index as HTML
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.0ms | Allocations: 688)
+
+
+  
+PG::UndefinedTable (ERROR:  relation "car" does not exist
+LINE 1:         SELECT * FROM car;
+                              ^
+):
+  
+app/models/car.rb:10:in `exec'
+app/models/car.rb:10:in `all'
+app/controllers/cars_controller.rb:4:in `index'

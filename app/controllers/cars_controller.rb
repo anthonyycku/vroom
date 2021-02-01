@@ -26,7 +26,7 @@ class CarsController < ApplicationController
 
     # FILTERS
 
-    # def filterType
-    #     render json: Car.filterType(params["id"], params["type"])
-    # end
+    def filterType
+        render json: Car.filterType(params["id"], params["type"])
+    end
 end
