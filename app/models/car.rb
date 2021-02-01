@@ -117,13 +117,13 @@ class Car
     # FILTERS
 
 
-  def self.filterType(opts)
+  def self.filterType(id, type)
     results = DB.exec(
       <<-SQL
       SELECT car.* FROM car
       LEFT JOIN company
       ON car.company_id=company.id
-      WHERE company.id=#{opts["id"]} AND car.type ILIKE '#{opts["type"]}'
+      WHERE company.id=#{id} AND car.type ILIKE '#{type}'
       SQL
     )
     return results.map do |result|
