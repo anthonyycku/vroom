@@ -123,7 +123,7 @@ class Car
       SELECT car.* FROM car
       LEFT JOIN company
       ON car.company_id=company.id
-      WHERE company.id=#{id} AND car.type='#{type}'
+      WHERE company.id=#{id} AND car.type ILIKE '#{type}'
       SQL
     )
     return results.map do |result|
