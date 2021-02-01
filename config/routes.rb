@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   post '/cars', to:'cars#create'
   delete '/cars/:id', to:'cars#delete'
   put '/cars/:id', to:'cars#update'
-
+  # Filter routes
+  get '/filter/types/:type', to:'cars#filterTypes'
 end

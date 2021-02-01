@@ -23,4 +23,10 @@ class CarsController < ApplicationController
     def update
         render json: Car.update(params["id"], params["car"])
     end
+
+    # FILTERS
+
+    def filterTypes
+        render json: Car.filterTypes(params["id"], params["type"])
+    end
 end
