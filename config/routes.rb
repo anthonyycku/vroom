@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   get '/filter/type/:id/:type', to:'cars#filterType'
 
   #Filter company methods
-  get '/filter/companies/country', to:'companies#filterCountry'
+  # get '/filter/companies/country', to:'companies#filterCountry'
 end
