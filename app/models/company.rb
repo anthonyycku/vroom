@@ -50,7 +50,6 @@ class Company < ApplicationRecord
         "image" => result["image"],
         "children" => childrenArray
       }
-    end
   end
 
 
