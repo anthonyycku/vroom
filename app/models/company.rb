@@ -6,21 +6,49 @@ class Company < ApplicationRecord
     DB = PG.connect(host: "localhost", port: 5432, dbname: 'vroom_development')
   end
 
+  # def self.all
+  #   results = DB.exec(
+  #   <<-SQL    
+  #   SELECT * FROM company
+  #   ORDER BY id ASC;
+  #   SQL
+  #   )
+  #   return results.map do |result|
+  #     {
+  #       "id" => result["id"].to_i,
+  #       "name" => result["name"],
+  #       "description" => result["description"],
+  #       "country" => result["country"],
+  #       "parent_id" => result["parent_id"].to_i,
+  #       "image" => result["image"]
+  #     }
+  #   end
+  # end
+
   def self.all
     results = DB.exec(
     <<-SQL    
-    SELECT * FROM company
-    ORDER BY id ASC;
+    SELECT company.*, car.id as "carID" FROM company
+    LEFT JOIN car ON car.company_id=company.id
+    ORDER BY company.id ASC
     SQL
     )
-    return results.map do |result|
+    childrenArray = results.map do |child|
+      {
+        "id" => child["carID"].to_i
+      }
+    end
+
+    result = results.first
+    return
       {
         "id" => result["id"].to_i,
         "name" => result["name"],
         "description" => result["description"],
         "country" => result["country"],
         "parent_id" => result["parent_id"].to_i,
-        "image" => result["image"]
+        "image" => result["image"],
+        "children" => childrenArray
       }
     end
   end
