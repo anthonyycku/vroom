@@ -110,4 +110,23 @@ def self.update(id, opts)
   }
 end
 
+def self.filterCountry
+  results = DB.exec(
+    <<-SQL
+      SELECT * FROM company
+      ORDER BY country ASC
+    SQL
+  )
+  return results.map do |result|
+    {
+      "id" => result["id"],
+      "name" => result["name"],
+      "description" => result["description"],
+      "image" => result["image"],
+      "country" => result["country"],
+      "parent_id" => result["parent_id"]
+    }
+  end
+end
+
 end
