@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/companies', to: 'companies#create'
   put '/companies/:id', to: 'companies#update'
   delete '/companies/:id', to: 'companies#delete'
+  get '/filter/country', to:'companies#filterCountry'
 
   get '/cars', to:'cars#index'
   get '/singleCar/:id', to:'cars#showSingle'
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   get '/filter/type/:id/:type', to:'cars#filterType'
 
   #Filter company methods
-  # get '/filter/companies/country', to:'companies#filterCountry'
+  # get '/filter/companies/alphabetup', to:'companies#filterAlphabetUp'
+  # get '/filter/companies/alphabetdown', to:'companies#filterAlphabetDown'
 end

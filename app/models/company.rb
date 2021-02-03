@@ -25,8 +25,6 @@ class Company < ApplicationRecord
     end
   end
 
-
-
 def self.find(id)
   results = DB.exec(
       <<-SQL
@@ -112,11 +110,11 @@ def self.update(id, opts)
   }
 end
 
-def self.filterCountry
+def self.filterAlphabetUp
   results = DB.exec(
     <<-SQL
       SELECT * FROM company
-      ORDER BY country ASC
+      ORDER BY name ASC
     SQL
   )
   return results.map do |result|
@@ -128,6 +126,46 @@ def self.filterCountry
       "country" => result["country"],
       "parent_id" => result["parent_id"]
     }
+  end
+end
+
+def self.filterAlphabetDown
+  results = DB.exec(
+    <<-SQL
+      SELECT * FROM company
+      ORDER BY name DESC
+    SQL
+  )
+  return results.map do |result|
+    {
+      "id" => result["id"],
+      "name" => result["name"],
+      "description" => result["description"],
+      "image" => result["image"],
+      "country" => result["country"],
+      "parent_id" => result["parent_id"]
+    }
+  end
+end
+
+def self.filterCountry()
+  results = DB.exec(
+    <<-SQL
+    SELECT company * FROM company
+    
+    ORDER BY  country ASC
+    SQL
+  )
+  return results.map do |result|
+    {
+      "id" => result["id"].to_i,
+      "name" => result["name"],
+      "description" => result["description"],
+      "country" => result["country"],
+      "parent_id" => result["parent_id"].to_i,
+      "image" => result["image"],
+      "children" => childrenArray
+  }
   end
 end
 

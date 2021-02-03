@@ -23,4 +23,12 @@ end
 def filterCountry
     render json: Company.filterCountry()
 end
+
+# def filterAlphabetUp
+#     render json: Company.filterAlphabetUp()
+# end
+
+# def filterAlphabetDown
+#     render json: Company.filterAlphabetDown()
+# end
 end
