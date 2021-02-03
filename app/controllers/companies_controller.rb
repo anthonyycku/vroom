@@ -24,11 +24,16 @@ def filterCountry
     render json: Company.filterCountry()
 end
 
-# def filterAlphabetUp
-#     render json: Company.filterAlphabetUp()
-# end
+def filterCountryDesc
+    render json: Company.filterCountryDesc()
+end
 
-# def filterAlphabetDown
-#     render json: Company.filterAlphabetDown()
-# end
+def alphabeticalASC
+    render json: Company.alphabeticalASC()
+end
+
+def alphabeticalDesc
+    render json: Company.alphabeticalDesc()
+end
+
 end

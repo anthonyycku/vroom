@@ -110,44 +110,6 @@ def self.update(id, opts)
   }
 end
 
-def self.filterAlphabetUp
-  results = DB.exec(
-    <<-SQL
-      SELECT * FROM company
-      ORDER BY name ASC
-    SQL
-  )
-  return results.map do |result|
-    {
-      "id" => result["id"],
-      "name" => result["name"],
-      "description" => result["description"],
-      "image" => result["image"],
-      "country" => result["country"],
-      "parent_id" => result["parent_id"]
-    }
-  end
-end
-
-def self.filterAlphabetDown
-  results = DB.exec(
-    <<-SQL
-      SELECT * FROM company
-      ORDER BY name DESC
-    SQL
-  )
-  return results.map do |result|
-    {
-      "id" => result["id"],
-      "name" => result["name"],
-      "description" => result["description"],
-      "image" => result["image"],
-      "country" => result["country"],
-      "parent_id" => result["parent_id"]
-    }
-  end
-end
-
 def self.filterCountry()
   results = DB.exec(
     <<-SQL
@@ -163,6 +125,69 @@ def self.filterCountry()
       "country" => result["country"],
       "parent_id" => result["parent_id"].to_i,
       "image" => result["image"],
+  }
+  end
+end
+
+def self.filterCountryDesc()
+  results = DB.exec(
+    <<-SQL
+    SELECT * FROM company
+    
+    ORDER BY  country DESC
+    SQL
+  )
+  return results.map do |result|
+    {
+      "id" => result["id"].to_i,
+      "name" => result["name"],
+      "description" => result["description"],
+      "country" => result["country"],
+      "parent_id" => result["parent_id"].to_i,
+      "image" => result["image"],
+      "children" => childrenArray
+  }
+  end
+end
+
+def self.alphabeticalASC()
+  results = DB.exec(
+    <<-SQL
+    SELECT  * FROM company
+    
+    ORDER BY  name ASC
+    SQL
+  )
+  return results.map do |result|
+    {
+      "id" => result["id"].to_i,
+      "name" => result["name"],
+      "description" => result["description"],
+      "country" => result["country"],
+      "parent_id" => result["parent_id"].to_i,
+      "image" => result["image"],
+      "children" => childrenArray
+  }
+  end
+end
+
+def self.alphabeticalDesc()
+  results = DB.exec(
+    <<-SQL
+    SELECT  * FROM company
+    
+    ORDER BY  name DESC
+    SQL
+  )
+  return results.map do |result|
+    {
+      "id" => result["id"].to_i,
+      "name" => result["name"],
+      "description" => result["description"],
+      "country" => result["country"],
+      "parent_id" => result["parent_id"].to_i,
+      "image" => result["image"],
+      "children" => childrenArray
   }
   end
 end

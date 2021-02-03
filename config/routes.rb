@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   put '/companies/:id', to: 'companies#update'
   delete '/companies/:id', to: 'companies#delete'
   get '/filter/country', to:'companies#filterCountry'
+  get '/filter/countryDesc', to:'companies#filterCountryDesc'
+  get '/filter/alphabeticalASC', to:'companies#filterASC'
+  get '/filter/alphabeticalDesc', to:'companies#filterDesc'
 
   get '/cars', to:'cars#index'
   get '/singleCar/:id', to:'cars#showSingle'
@@ -16,7 +19,4 @@ Rails.application.routes.draw do
   # Filter routes
   get '/filter/type/:id/:type', to:'cars#filterType'
 
-  #Filter company methods
-  # get '/filter/companies/alphabetup', to:'companies#filterAlphabetUp'
-  # get '/filter/companies/alphabetdown', to:'companies#filterAlphabetDown'
 end
