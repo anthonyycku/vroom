@@ -163,7 +163,6 @@ def self.filterCountry()
       "country" => result["country"],
       "parent_id" => result["parent_id"].to_i,
       "image" => result["image"],
-      "children" => childrenArray
   }
   end
 end
