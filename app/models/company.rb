@@ -151,8 +151,7 @@ end
 def self.filterCountry()
   results = DB.exec(
     <<-SQL
-    SELECT company * FROM company
-    
+    SELECT * FROM company
     ORDER BY  country ASC
     SQL
   )
